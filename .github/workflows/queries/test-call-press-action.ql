@@ -24,11 +24,11 @@ predicate isTest(Function test) {
 predicate calls(Function caller) {
   exists(DataFlow::CallNode call |
     call.getEnclosingFunction() = caller and
-    call.getName() = "pressActionKey"
+    call.getCalleeName() = "pressActionKey"
   )
 }
 
-from Function test, Function callee
+from Function test
 where isTest(test) and
       calls(test)
 select test, "directly calls pressActionKey"
